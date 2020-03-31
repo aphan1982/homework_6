@@ -8,37 +8,105 @@
   <!-- BOOTSTRAP/CSS STYLESHEETS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/style.css">
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Rock+Salt|Slabo+27px&display=swap" rel="stylesheet">
 </head>
 
 <body>
+  <!-- **JUMBOTRON (weather dash)** -->
+  <!-- Get card for current display -->
   <header>
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid" data-imgCredit="Photo by Victor Rodriguez on Unsplash">
       <div class="container">
-        <h1 class="display-4">Fluid jumbotron</h1>
-        <p class="lead">Phan's Weather Dashboard</p>
+        <h1 class="display-4">Phan's Weather Dashboard</h1>
+        <p class="lead">Whether or Not, Weather or Naught</p>
       </div>
     </div>
   </header>
-  <!-- **JUMBOTRON (weather dash)** -->
-<!-- Get card for current display -->
 
 <!-- **INPUT GROUP FORM/BUTTON** -->
 <!-- Search field for city -->
-
-<!-- **BUTTONS** -->
-<!-- Place for search history (buttons?) -->
+<div class="card">
+  <h5 class="card-header">City Search</h5>
+  <div class="card-body row">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control handwriting" placeholder=" Search for weather" aria-label="Search for Weather" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button type="button" class="input-group-text" id="basic-addon2"><svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+        </svg></button>
+      </div>
+    </div>
+    <!-- **BUTTONS** -->
+    <!-- Place for search history (buttons?) -->
+  </div>
+  <div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action active" disabled>Recent Searches</button>
+    <button type="button" class="list-group-item list-group-item-action handwriting">No Recent Searches</button>
+  </div> <!--*10-->
+</div>
 
 <!-- **CARD w/<p> tags** -->
 <!-- WHEN I view current weather conditions for that city
 THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index -->
+<div class="card">
+  <h5 class="card-header">Example City</h5>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+</div>
 
-<!-- **ALERT** -->
+<!-- **CURRENT WEATHER CARD** -->
 <!-- WHEN I view the UV index
 THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe -->
 
-<!-- **ALERTS** -->
+
+<!-- **5-DAY FORECAST CARDS** -->
 <!-- WHEN I view future weather conditions for that city
 THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity -->
+
 
 <!-- localStorage.getItem -->
 <!-- WHEN I click on a city in the search history
@@ -47,6 +115,10 @@ THEN I am again presented with current and future conditions for that city -->
 <!-- localStorage.getItem -->
 <!-- WHEN I open the weather dashboard
 THEN I am presented with the last searched city forecast -->
+
+<hr>
+
+<footer></footer>
 
 <!-- JQUERY/JAVASCRIPT -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>

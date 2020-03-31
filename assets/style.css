@@ -1,0 +1,22 @@
+/* ELEMENT STYLES */
+body {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+/* CLASS STYLES */
+.col-sm-2 {
+  padding-left: 0%;
+  padding-right: 0%;
+}
+.handwriting {
+  color: darkblue;
+  font-family: 'Rock Salt', cursive;
+}
+.jumbotron {
+  background-image: url("./images/victor-rodriguez-CPFYZSvAzc8-unsplash.jpg");
+  background-size: cover;
+  color: #ffffff;
+}
+.serif {
+  font-family: 'Slabo 27px', serif;
+}
