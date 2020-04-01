@@ -15,86 +15,60 @@
 <body>
   <!-- **JUMBOTRON (weather dash)** -->
   <!-- Get card for current display -->
-  <header>
-    <div class="jumbotron jumbotron-fluid" data-imgCredit="Photo by Victor Rodriguez on Unsplash">
-      <div class="container">
-        <h1 class="display-4">Phan's Weather Dashboard</h1>
-        <p class="lead">Whether or Not, Weather or Naught</p>
-      </div>
+  <header class="jumbotron jumbotron-fluid" data-imgCredit="Photo by Victor Rodriguez on Unsplash">
+    <div class="container">
+      <h1 class="display-4">Phan's Weather Dashboard</h1>
+      <p class="lead">Whether or Not, Weather or Naught</p>
     </div>
   </header>
 
-<!-- **INPUT GROUP FORM/BUTTON** -->
-<!-- Search field for city -->
-<div class="card">
-  <h5 class="card-header">City Search</h5>
-  <div class="card-body row">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control handwriting" placeholder=" Search for weather" aria-label="Search for Weather" aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button type="button" class="input-group-text" id="basic-addon2"><svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
-          <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
-        </svg></button>
-      </div>
-    </div>
-    <!-- **BUTTONS** -->
-    <!-- Place for search history (buttons?) -->
-  </div>
-  <div class="list-group">
-    <button type="button" class="list-group-item list-group-item-action active" disabled>Recent Searches</button>
-    <button type="button" class="list-group-item list-group-item-action handwriting">No Recent Searches</button>
-  </div> <!--*10-->
-</div>
-
-<!-- **CARD w/<p> tags** -->
-<!-- WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index -->
-<div class="card">
-  <h5 class="card-header">Example City</h5>
+<!-- MAIN WEATHER DISPLAY CONTAINER -->
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-2">
+    <!-- SEARCH SIDEBAR -->
+    <div class="col-xs-4">
       <div class="card">
+        <!-- header and card body-->
+        <h5 class="card-header">City Search</h5>
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <!-- search bar and button-->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control handwriting" placeholder=" Search weather" aria-label="Search weather" aria-describedby="basic-addon2">
+            <button type="button" class="input-group-text" id="basic-addon2">
+              <!-- magnifying glass icon -->
+              <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+          </div>
+          <!-- recent search buttons -->
+          <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action active" disabled>Recent searches</button>
+            <button type="button" class="list-group-item list-group-item-action handwriting">No recent searches</button>
+            <button type="button" class="list-group-item list-group-item-action"></button>
+            <button type="button" class="list-group-item list-group-item-action"></button>
+            <button type="button" class="list-group-item list-group-item-action"></button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-2">
+
+
+    <!-- **CARD w/<p> tags** -->
+    <!-- WHEN I view current weather conditions for that city
+    THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index -->
+    <div class="col-xs-8">
       <div class="card">
+        <h5 class="card-header">Featured</h5>
         <div class="card-body">
           <h5 class="card-title">Special title treatment</h5>
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
     </div>
-    <div class="col-sm-2">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-1"></div>
+
   </div>
 </div>
 

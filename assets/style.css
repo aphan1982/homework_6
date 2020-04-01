@@ -4,9 +4,11 @@ body {
 }
 
 /* CLASS STYLES */
-.col-sm-2 {
-  padding-left: 0%;
-  padding-right: 0%;
+.card {
+  border: none;
+}
+.card-header {
+  border-bottom: none;
 }
 .handwriting {
   color: darkblue;
@@ -17,6 +19,10 @@ body {
   background-size: cover;
   color: #ffffff;
 }
+/* .list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+} */
 .serif {
   font-family: 'Slabo 27px', serif;
 }
