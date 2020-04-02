@@ -48,6 +48,7 @@ body {
   background-image: url("./images/victor-rodriguez-CPFYZSvAzc8-unsplash.jpg");
   background-size: cover;
   color: #ffffff;
+  padding: 0rem 1rem;
 }
 .list-group {
   border-radius: 0.25rem;

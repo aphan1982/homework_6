@@ -1,7 +1,8 @@
-// Gets current day and time:
+// Gets current day and time and displays immediately:
 var nowMoment = moment().format("dddd, MMMM Do, h:mma");
 $("#currTime").text(nowMoment);
 
+// Maintains time current to the second:
 function updateTime() {
   nowMoment = moment().format("dddd, MMMM Do, h:mma");
   $("#currTime").text(nowMoment);
