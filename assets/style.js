@@ -1,4 +1,10 @@
 // Get current time (moment.js?)
+var nowMoment = moment().format("dddd, MMMM Do, h:mma");
+
+function updateClock() {
+  nowMoment = moment().format("dddd, MMMM Do, h:mma");
+};
+setInterval(updateClock, 1000);
 
 // Get city from search bar (input form-control)
 
