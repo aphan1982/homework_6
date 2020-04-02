@@ -17,6 +17,16 @@ var searchInput = "";
 
 var queryURL_OWM = "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&appid=" + APIKey_OWM;
 
+function getSearchHistory() {
+  var allCities = JSON.parse(localStorage.getItem("cities"));
+  var searchBtns = $(".history");
+  for (i = 0; i < searchBtns.length; i++) {
+    searchBtns[i].innerHTML = allCities[i];
+    console.log(searchBtns[i]);
+  };
+};
+getSearchHistory();
+
 function setSearchHistory() {
   var city = $("#cityInput").val().trim();
   console.log(city);
