@@ -9,6 +9,19 @@ function updateTime() {
 };
 setInterval(updateTime, 1000);
 
+var cities = [];
+
+var APIKey_OWM = "016e0c84a66372bfe43d6b8df53c6531";
+var searchInput = "";
+
+var queryURL_OWM = "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&appid=" + APIKey_OWM;
+
+$("#genCity").on("click", function(event) {
+  event.preventDefault();
+  var city = $("#cityInput").val().trim();
+  console.log(city);
+});
+
 // Get city from search bar (input form-control)
 
 // When search button clicked, it drops information into the current city field:
