@@ -9,7 +9,9 @@ function updateTime() {
 };
 setInterval(updateTime, 1000);
 
-var cities = [];
+var searchedCities = ["No Recent Searches"];
+
+$("#cityBtn1").text(searchedCities[0]);
 
 var APIKey_OWM = "016e0c84a66372bfe43d6b8df53c6531";
 var searchInput = "";
