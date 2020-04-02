@@ -4,11 +4,41 @@ body {
 }
 
 /* CLASS STYLES */
+.badge {
+  border-radius: 0rem;
+  font-size: 100%;
+}
+.border {
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin: 0.5rem 0.25rem;
+}
+.brightCloud {
+  background-color: rgb(233, 114, 64);
+  color: #ffffff
+}
+.brightCloudRev {
+  color: rgb(220, 77, 59);
+}
+.btnBorders {
+  border-left: none;
+  border-radius: 0.25rem;
+  border-bottom-left-radius: 0rem;
+  border-top-left-radius: 0rem;
+}
 .card {
   border: none;
 }
 .card-header {
   border-bottom: none;
+}
+.coolCloud {
+  background-color: rgb(225, 233, 233);
+  color: rgb(61, 77, 69);
+}
+.darkSky {
+  background-color: rgb(143, 138, 104);
+  color: #ffffff;
 }
 .handwriting {
   color: darkblue;
@@ -19,10 +49,33 @@ body {
   background-size: cover;
   color: #ffffff;
 }
-/* .list-group-item:first-child {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-} */
+.list-group {
+  border-radius: 0.25rem;
+}
+.list-group-item.active {
+  background-color: rgb(61, 77, 69);
+  border-color: rgb(61, 77, 69);
+  color: #ffffff;
+}
+.minPadding {
+  padding: 0.5rem;
+}
 .serif {
   font-family: 'Slabo 27px', serif;
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 576px) {
+  .rulesVH {
+    border-right: 1px solid rgba(0,0,0,.125);
+  }
+}
+
+@media (max-width: 575px) {
+  .card-group>.card {
+    margin-bottom: 0px;
+  }
+  .rulesVH {
+    border-bottom: 1px solid rgba(0,0,0,.125);
+  }
 }

@@ -13,8 +13,7 @@
 </head>
 
 <body>
-  <!-- **JUMBOTRON (weather dash)** -->
-  <!-- Get card for current display -->
+  <!-- // JUMBOTRON // -->
   <header class="jumbotron jumbotron-fluid" data-imgCredit="Photo by Victor Rodriguez on Unsplash">
     <div class="container">
       <h1 class="display-4">Phan's Weather Dashboard</h1>
@@ -22,19 +21,19 @@
     </div>
   </header>
 
-<!-- MAIN WEATHER DISPLAY CONTAINER -->
+<!-- // MAIN DISPLAY CONTAINER // -->
 <div class="container-fluid">
   <div class="row">
     <!-- SEARCH SIDEBAR -->
-    <div class="col-xs-4">
+    <div class="col-sm-4">
       <div class="card">
-        <!-- header and card body-->
-        <h5 class="card-header">City Search</h5>
-        <div class="card-body">
+        <!-- header and body -->
+        <h5 class="card-header darkSky">City Search</h5>
+        <div class="card-body minPadding">
           <!-- search bar and button-->
           <div class="input-group mb-3">
-            <input type="text" class="form-control handwriting" placeholder=" Search weather" aria-label="Search weather" aria-describedby="basic-addon2">
-            <button type="button" class="input-group-text" id="basic-addon2">
+            <input type="text" class="form-control handwriting" placeholder=" Search..." aria-label="Search weather" aria-describedby="basic-addon2">
+            <button type="button" class="input-group-text btnBorders" id="basic-addon2">
               <!-- magnifying glass icon -->
               <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
@@ -42,7 +41,7 @@
               </svg>
             </button>
           </div>
-          <!-- recent search buttons -->
+          <!-- recent search buttons (added dynamically) -->
           <div class="list-group">
             <button type="button" class="list-group-item list-group-item-action active" disabled>Recent searches</button>
             <button type="button" class="list-group-item list-group-item-action handwriting">No recent searches</button>
@@ -54,17 +53,57 @@
       </div>
     </div>
 
-
     <!-- **CARD w/<p> tags** -->
     <!-- WHEN I view current weather conditions for that city
     THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index -->
-    <div class="col-xs-8">
+    <!-- CURRENT SELECTED CITY -->
+    <div class="col-sm-8">
       <div class="card">
-        <h5 class="card-header">Featured</h5>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-header brightCloud">Anytown, US</h5>
+        <div class="card-body border">
+          <p class="card-text">Temperature: </p>
+          <p class="card-text">Humidity: </p>
+          <p class="card-text">Wind Speed: </p>
+          <p class="card-text">UV Index: <span class="badge badge-secondary">New</span></p>
+        </div>
+        <!-- FIVE-DAY FORECAST -->
+        <h5 class="card-header brightCloudRev">Five-Day Forecast</h5>
+        <div class="card-group border">
+          <div class="card coolCloud rulesVH">
+            <div class="card-body">
+              <h5 class="card-title">Day 1</h5>
+              <p class="card-text">T: </p>
+              <p class="card-text">RH: </p>
+            </div>
+          </div>
+          <div class="card coolCloud rulesVH">
+            <div class="card-body">
+              <h5 class="card-title">Day 1</h5>
+              <p class="card-text">T: </p>
+              <p class="card-text">RH: </p>
+            </div>
+          </div>
+          <div class="card coolCloud rulesVH">
+            <div class="card-body">
+              <h5 class="card-title">Day 1</h5>
+              <p class="card-text">T: </p>
+              <p class="card-text">RH: </p>
+            </div>
+          </div>
+          <div class="card coolCloud rulesVH">
+            <div class="card-body">
+              <h5 class="card-title">Day 1</h5>
+              <p class="card-text">T: </p>
+              <p class="card-text">RH: </p>
+            </div>
+          </div>
+          <div class="card coolCloud">
+            <div class="card-body">
+              <h5 class="card-title">Day 1</h5>
+              <p class="card-text">T: </p>
+              <p class="card-text">RH: </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
