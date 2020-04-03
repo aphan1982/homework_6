@@ -1,8 +1,8 @@
-// Gets current day and time and displays immediately:
+// TIMECLOCK //
 function setTime() {
+  // Gets current day and time and displays immediately:
   var nowMoment = moment().format("dddd, MMMM Do, h:mma");
   $("#currTime").text(nowMoment);
-  
   // Maintains time current to the second:
   function updateTime() {
     nowMoment = moment().format("dddd, MMMM Do, h:mma");
@@ -12,6 +12,26 @@ function setTime() {
 };
 setTime();
 
+function initSearch() {
+  var buttons = $(".history");
+  var searchedCities = JSON.parse(localStorage.getItem("cities"));
+  buttons.empty();
+  buttons.addClass("d-none");
+  if (searchedCities === null) {
+    $("#cityBtn1").text("no recent history");
+    $("#cityBtn1").removeClass("d-none");
+    return;
+  } else {
+    console.log(searchedCities.length);
+    for (i = 0; i < searchBtns.length; i++) {
+      searchBtns[i].text(searchedCities[i]);
+      if (searchedCities[i] === undefined) {
+        searchBtns[i].addClass("d-none");
+      }
+    }
+  }
+};
+initSearch();
 
 renderHistory();
 var searchedCities = [];
