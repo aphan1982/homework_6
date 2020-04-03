@@ -1,13 +1,17 @@
 // Gets current day and time and displays immediately:
-var nowMoment = moment().format("dddd, MMMM Do, h:mma");
-$("#currTime").text(nowMoment);
-
-// Maintains time current to the second:
-function updateTime() {
-  nowMoment = moment().format("dddd, MMMM Do, h:mma");
+function setTime() {
+  var nowMoment = moment().format("dddd, MMMM Do, h:mma");
   $("#currTime").text(nowMoment);
+  
+  // Maintains time current to the second:
+  function updateTime() {
+    nowMoment = moment().format("dddd, MMMM Do, h:mma");
+    $("#currTime").text(nowMoment);
+  };
+  setInterval(updateTime, 1000);
 };
-setInterval(updateTime, 1000);
+setTime();
+
 
 renderHistory();
 var searchedCities = [];
@@ -34,12 +38,10 @@ function renderHistory() {
   } else {
     console.log(searchedCities.length);
     for (i = 0; i < searchBtns.length; i++) {
-    searchBtns[i].text(searchedCities[i]);
-    console.log(searchBtns[i].value);
-    if (searchedCities[i] === undefined) {
-      searchBtns[i].addClass("d-none");
-      console.log(searchBtns[i]);
-    }
+      searchBtns[i].text(searchedCities[i]);
+      if (searchedCities[i] === undefined) {
+        searchBtns[i].addClass("d-none");
+      }
     }
   }
 
