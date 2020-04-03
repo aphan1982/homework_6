@@ -9,6 +9,7 @@ function updateTime() {
 };
 setInterval(updateTime, 1000);
 
+renderHistory();
 var searchedCities = [];
 
 
@@ -17,28 +18,45 @@ var searchInput = "";
 
 var queryURL_OWM = "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&appid=" + APIKey_OWM;
 
-function getSearchHistory() {
-  var allCities = JSON.parse(localStorage.getItem("cities"));
-  var searchBtns = $(".history");
-  for (i = 0; i < searchBtns.length; i++) {
-    searchBtns[i].innerHTML = allCities[i];
-    console.log(searchBtns[i]);
-  };
-};
-getSearchHistory();
-
 function setSearchHistory() {
   var city = $("#cityInput").val().trim();
-  console.log(city);
   searchedCities.unshift(city);
-  console.log(searchedCities);
   localStorage.setItem("cities", JSON.stringify(searchedCities));
 };
+
+function renderHistory() {
+  var searchBtns = [$("#cityBtn1"), $("#cityBtn2"), $("#cityBtn3"), $("#cityBtn4"), $("#cityBtn5"), $("#cityBtn6"), $("#cityBtn7"), $("#cityBtn8"), $("#cityBtn9"), $("#cityBtn10")];
+  searchedCities = JSON.parse(localStorage.getItem("cities"));
+  if (searchedCities === null) {
+    searchBtns[0].text("no recent history");
+    $(".hideable").hide();
+    return;
+  } else {
+    console.log(searchedCities.length);
+    for (i = 0; i < searchBtns.length; i++) {
+    searchBtns[i].text(searchedCities[i]);
+    console.log(searchBtns[i].value);
+    if (searchedCities[i] === undefined) {
+      searchBtns[i].addClass("d-none");
+      console.log(searchBtns[i]);
+    }
+    }
+  }
+
+  // console.log(searchedCities);
+  
+  //     console.log(searchBtns[i]);
+  //     console.log(city);
+  //     console.log(searchedCities);
+  //   }
+  // }
+};
+
 
 $("#genCity").on("click", function(event) {
   event.preventDefault();
   setSearchHistory();
-  $("#cityInput").val("");
+  renderHistory();
 });
 
 // Get city from search bar (input form-control)
