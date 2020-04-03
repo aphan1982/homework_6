@@ -22,19 +22,11 @@ function initSearch() {
     $("#cityBtn1").removeClass("d-none");
     return;
   } else {
-    console.log(searchedCities.length);
-    for (i = 0; i < searchBtns.length; i++) {
-      searchBtns[i].text(searchedCities[i]);
-      if (searchedCities[i] === undefined) {
-        searchBtns[i].addClass("d-none");
-      }
-    }
+    renderHistory();
   }
 };
 initSearch();
 
-renderHistory();
-var searchedCities = [];
 
 
 var APIKey_OWM = "016e0c84a66372bfe43d6b8df53c6531";
@@ -44,6 +36,10 @@ var queryURL_OWM = "https://api.openweathermap.org/data/2.5/weather?q=" + search
 
 function setSearchHistory() {
   var city = $("#cityInput").val().trim();
+  var searchedCities = JSON.parse(localStorage.getItem("cities"));
+  if (searchedCities === null) {
+    searchedCities = [];
+  }
   searchedCities.unshift(city);
   localStorage.setItem("cities", JSON.stringify(searchedCities));
 };
@@ -51,33 +47,21 @@ function setSearchHistory() {
 function renderHistory() {
   var searchBtns = [$("#cityBtn1"), $("#cityBtn2"), $("#cityBtn3"), $("#cityBtn4"), $("#cityBtn5"), $("#cityBtn6"), $("#cityBtn7"), $("#cityBtn8"), $("#cityBtn9"), $("#cityBtn10")];
   searchedCities = JSON.parse(localStorage.getItem("cities"));
-  if (searchedCities === null) {
-    searchBtns[0].text("no recent history");
-    $(".hideable").hide();
-    return;
-  } else {
-    console.log(searchedCities.length);
-    for (i = 0; i < searchBtns.length; i++) {
+  for (i = 0; i < searchBtns.length; i++) {
+    if (searchedCities[i] === undefined) {
+      return;
+    } else {
       searchBtns[i].text(searchedCities[i]);
-      if (searchedCities[i] === undefined) {
-        searchBtns[i].addClass("d-none");
-      }
+      searchBtns[i].removeClass("d-none");
     }
   }
-
-  // console.log(searchedCities);
-  
-  //     console.log(searchBtns[i]);
-  //     console.log(city);
-  //     console.log(searchedCities);
-  //   }
-  // }
 };
 
 
 $("#genCity").on("click", function(event) {
   event.preventDefault();
   setSearchHistory();
+  $("#cityInput").val("");
   renderHistory();
 });
 
