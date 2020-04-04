@@ -68,6 +68,7 @@ $(document).ready(function() {
     var city;
     var cityFromHistory = $(this).attr("data-name");
     var cityFromInput = $("#cityInput").val().trim();
+    var today = moment().format("dddd, MMMM Do");
     var OWM_APIKey = "016e0c84a66372bfe43d6b8df53c6531";
     var OWM_UnitConvert = "&units=imperial";
     var OWM_URL = "https://api.openweathermap.org/data/2.5/";
@@ -78,8 +79,7 @@ $(document).ready(function() {
     } else {
       city = cityFromHistory;
     }
-    console.log(city);
-    $("#cityName").text(city);
+
     
     var OWM_WeatherQuery = OWM_URL + "weather?q=" + city + OWM_UnitConvert + "&appid=" + OWM_APIKey;
     
@@ -93,12 +93,15 @@ $(document).ready(function() {
       var longitude = response.coord.lon;
       var latitude = response.coord.lat;
       var RHumidity = response.main.humidity;
+      var OWM_IconCode = response.weather.icon;
+      var OWM_Icon = "http://openweathermap.org/img/wn/" + OWM_IconCode + "@2x.png";
       var windSpeed = response.wind.speed;
       
       // assigns values to "CURRENT SELECTED CITY" on DOM:
       $("#tempF").text(tempF + "°F");
       $("#RHumidity").text(RHumidity + "%");
       $("#windSpeed").text(windSpeed + "mph");
+      $("#cityName").text(city + "  —" + today + "   " + OWM_Icon);
       
       // AJAX call for the UV Index (requires longitude and latitude from previous call to determine):
       var OWM_UVQuery = OWM_URL + "uvi?appid=" + OWM_APIKey + "&lat=" + latitude + "&lon=" + longitude;

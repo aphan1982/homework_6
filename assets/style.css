@@ -65,23 +65,7 @@ body {
   font-family: 'Slabo 27px', serif;
 }
 
-/* MEDIA QUERIES */
-@media (min-width: 576px) {
-  .rulesVH {
-    border-right: 1px solid rgba(0,0,0,.125);
-  }
-}
-
-@media (max-width: 575px) {
-  .card-group>.card {
-    margin-bottom: 0px;
-  }
-  .rulesVH {
-    border-bottom: 1px solid rgba(0,0,0,.125);
-  }
-}
-
-/* UV Classes */
+/* UV CLASSES */
 .UVLow {
   background-color: rgb(76, 146, 41);
 }
@@ -97,4 +81,20 @@ body {
 }
 .UVExtreme {
   background-color: rgb(102, 79, 196);
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 576px) {
+  .rulesVH {
+    border-right: 1px solid rgba(0,0,0,.125);
+  }
+}
+
+@media (max-width: 575px) {
+  .card-group>.card {
+    margin-bottom: 0px;
+  }
+  .rulesVH {
+    border-bottom: 1px solid rgba(0,0,0,.125);
+  }
 }
