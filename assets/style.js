@@ -110,9 +110,11 @@ $(document).ready(function() {
         var UVIndex = response.value;
         $("#UVIndex").text(UVIndex);
         
-        // determines the level of UV severity based on the World Health Organization's index then assigns corresponding color in UV Index box adjacent to UV Index data on DOM:
+        // UV INDEX //
+        // resets the color of the UV Index Box:
         $("#UVIBox").removeClass();
         $("#UVIBox").addClass("badge badge-secondary");
+        // determines the World Health Organization's color-coded index and assigns to DOM:
         if (UVIndex >= 0 && UVIndex < 3) {
           $("#UVIBox").text("Low");
           $("#UVIBox").addClass("UVLow");
