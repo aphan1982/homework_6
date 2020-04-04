@@ -13,8 +13,6 @@ function setTime() {
 setTime();
 
 // VARIABLES
-var APIKey_OWM = "016e0c84a66372bfe43d6b8df53c6531";
-var queryURL_OWM = "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&appid=" + APIKey_OWM;
 var searchInput = "";
 
 $(document).ready(function() {
@@ -33,7 +31,7 @@ $(document).ready(function() {
     }
   };
   initSearch();
-
+  
   // SET HISTORY--takes user input (search cities) and stores it in local storage:
   function setSearchHistory() {
     var city = $("#cityInput").val().trim();
@@ -49,7 +47,7 @@ $(document).ready(function() {
       localStorage.setItem("cities", JSON.stringify(searchedCities));
     }
   };
-
+  
   // RENDER HISTORY--displays each search entry as a clickable button:
   function renderHistory() {
     var searchBtns = [$("#cityBtn1"), $("#cityBtn2"), $("#cityBtn3"), $("#cityBtn4"), $("#cityBtn5"), $("#cityBtn6"), $("#cityBtn7"), $("#cityBtn8"), $("#cityBtn9"), $("#cityBtn10")];
@@ -59,14 +57,38 @@ $(document).ready(function() {
         return;
       } else {
         searchBtns[i].text(searchedCities[i]);
+        searchBtns[i].attr("data-name", searchedCities[i]);
         searchBtns[i].removeClass("d-none");
       }
     }
   };
+  
+  function displayWeather() {
+    var APIKey_OWM = "&appid=016e0c84a66372bfe43d6b8df53c6531";
+    var city;
+    var queryURL_OWM = "https://api.openweathermap.org/data/2.5/weather?q=" + city + APIKey_OWM;
 
+    if ($("#cityInput").val("")) {
+      city = $(this).attr("data-name");
+    } else {
+      city = $("#cityInput").val().trim();
+    }
+
+    $.ajax({
+      url: queryURL_OWM,
+      method: "GET"
+    }).then(function(response) {
+      var tempF;
+      var RHumidity;
+      var windSpeed;
+      var UVIndex;
+    
+  };
+  
   $("#genCity").on("click", function(event) {
     event.preventDefault();
     setSearchHistory();
+    displayWeather();
     $("#cityInput").val("");
     renderHistory();
   });
