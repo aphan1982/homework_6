@@ -64,24 +64,43 @@ $(document).ready(function() {
   };
   
   function displayWeather() {
-    var APIKey_OWM = "&appid=016e0c84a66372bfe43d6b8df53c6531";
     var city;
-    var queryURL_OWM = "https://api.openweathermap.org/data/2.5/weather?q=" + city + APIKey_OWM;
-
-    if ($("#cityInput").val("")) {
-      city = $(this).attr("data-name");
+    var cityFromHistory = $(this).attr("data-name");
+    var cityFromInput = $("#cityInput").val().trim();
+    
+    if (cityFromInput) {
+      city = cityFromInput;
     } else {
-      city = $("#cityInput").val().trim();
+      city = cityFromHistory;
     }
+    var APIKey_OWM = "&appid=016e0c84a66372bfe43d6b8df53c6531";
+    var APIUnitConvert = "&units=imperial"
+    var queryURL_OWM = "https://api.openweathermap.org/data/2.5/weather?q=" + city + APIUnitConvert + APIKey_OWM;
+
+    console.log(city);
+    console.log(typeof(city));
+
+    console.log(queryURL_OWM);
 
     $.ajax({
       url: queryURL_OWM,
       method: "GET"
     }).then(function(response) {
-      var tempF;
-      var RHumidity;
-      var windSpeed;
+      var tempF = response.main.temp;
+      var RHumidity = response.main.humidity;
+      var windSpeed = response.wind.speed;
       var UVIndex;
+      // The UVI will be really tricky: OWM requires coordinates to search for UV. But once those are found, the UV Index breaks down like this:
+      // • 0-2, low: rgb(76, 146, 41);
+      // • 3-5, moderate: rgb(245, 227, 76);
+      // • 6-7, high: rgb(232, 100, 43);
+      // • 8-10, very high: rgb(200, 42, 35);
+      // • 11+, extreme: rgb(102, 79, 196);
+
+
+
+    var longitude = response.coord.lon;
+    var latitude = response.coord.lat;
     
   };
   

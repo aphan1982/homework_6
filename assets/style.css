@@ -80,3 +80,20 @@ body {
     border-bottom: 1px solid rgba(0,0,0,.125);
   }
 }
+
+/* UV Classes */
+.UVlow {
+  background-color: rgb(76, 146, 41);
+}
+.UVModerate {
+  background-color: rgb(245, 227, 76);
+}
+.UVHigh {
+  background-color: rgb(232, 100, 43);
+}
+.UVVeryHigh {
+  background-color: rgb(200, 42, 35);
+}
+.UVExtreme {
+  background-color: rgb(102, 79, 196);
+}
