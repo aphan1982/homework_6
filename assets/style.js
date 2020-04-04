@@ -15,6 +15,7 @@ setTime();
 // VARIABLES
 var searchInput = "";
 
+
 $(document).ready(function() {
   // INITIALIZATION--makes sure that no buttons are being rendered if no search history exists in local storage; if a search history exists, up to ten most recent searches will be rendered:
   function initSearch() {
@@ -67,41 +68,76 @@ $(document).ready(function() {
     var city;
     var cityFromHistory = $(this).attr("data-name");
     var cityFromInput = $("#cityInput").val().trim();
+    var OWM_APIKey = "&appid=016e0c84a66372bfe43d6b8df53c6531";
+    var OWM_FiveDayQuery = OWM_URL + "forecast?q=" + city + "&appid=" + OWM_UnitConvert + OWM_APIKey;
+    var OWM_UnitConvert = "&units=imperial";
+    var OWM_URL = "https://api.openweathermap.org/data/2.5/";
+    var OWM_WeatherQuery = OWM_URL + "weather?q=" + city + OWM_UnitConvert + OWM_APIKey;
     
+    // determines if the city has been entered from the search input or the search history:
     if (cityFromInput) {
       city = cityFromInput;
     } else {
       city = cityFromHistory;
     }
-    var APIKey_OWM = "&appid=016e0c84a66372bfe43d6b8df53c6531";
-    var APIUnitConvert = "&units=imperial"
-    var queryURL_OWM = "https://api.openweathermap.org/data/2.5/weather?q=" + city + APIUnitConvert + APIKey_OWM;
 
-    console.log(city);
-    console.log(typeof(city));
-
-    console.log(queryURL_OWM);
-
+    // AJAX call for the current weather:
     $.ajax({
-      url: queryURL_OWM,
+      url: OWM_WeatherQuery,
       method: "GET"
     }).then(function(response) {
+
       var tempF = response.main.temp;
+      var longitude = response.coord.lon;
+      var latitude = response.coord.lat;
+      var OWM_UVQuery = OWM_URL + "uvi?appid=" + OWM_APIKey + "&lat=" + latitude + "&lon=" + longitude;
       var RHumidity = response.main.humidity;
-      var windSpeed = response.wind.speed;
       var UVIndex;
-      // The UVI will be really tricky: OWM requires coordinates to search for UV. But once those are found, the UV Index breaks down like this:
-      // • 0-2, low: rgb(76, 146, 41);
-      // • 3-5, moderate: rgb(245, 227, 76);
-      // • 6-7, high: rgb(232, 100, 43);
-      // • 8-10, very high: rgb(200, 42, 35);
-      // • 11+, extreme: rgb(102, 79, 196);
+      var windSpeed = response.wind.speed;
+      
+      // AJAX call for the UV Index (requires longitude and latitude from previous call to determine):
+      $.ajax({
+        url: OWM_UVQuery,
+        method: "GET"
+      }).then(function(response) {
+        UVIndex = response.value;
+        
+        // assigns values to "CURRENT SELECTED CITY" on DOM:
+        $("#tempF").text(tempF);
+        $("#RHumidity").text(RHumidity);
+        $("#windSpeed").text(windSpeed);
+        $("#UVIndex").text(UVIndex);
+        
+        // determines the level of UV severity based on the World Health Organization's index then assigns corresponding color in UV Index box adjacent to UV Index data on DOM:
+        if (UVIndex >= 0 && UVIndex < 3) {
+          $("#UVIBox").text("Low");
+          $("#UVIBox").addClass("UVLow");
+        } else if (UVIndex >= 3 && UVIndex < 6) {
+          $("#UVIBox").text("Moderate");
+          $("#UVIBox").addClass("UVModerate");
+        } else if (UVIndex >= 6 && UVIndex < 8) {
+          $("#UVIBox").text("High");
+          $("#UVIBox").addClass("UVHigh");
+        } else if (UVIndex >= 8 && UVIndex < 11) {
+          $("#UVIBox").text("Very High");
+          $("#UVIBox").addClass("UVVeryHigh");
+        } else {
+          $("#UVIBox").text("Extreme");
+          $("#UVIBox").addClass("UVExtreme");
+        }
+      });
+    });
 
+    // AJAX call to get five-day forecast:
+    $.ajax({
+      url: OWM_FiveDayQuery,
+      method: "GET"
+    }).then(function(response) {
+      var fiveDayTempF = response.list.main.temp;
+      var fiveDayRHumidity = response.list.main.humidity;
 
-
-    var longitude = response.coord.lon;
-    var latitude = response.coord.lat;
-    
+      
+    });
   };
   
   $("#genCity").on("click", function(event) {
