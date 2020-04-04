@@ -68,11 +68,9 @@ $(document).ready(function() {
     var city;
     var cityFromHistory = $(this).attr("data-name");
     var cityFromInput = $("#cityInput").val().trim();
-    var OWM_APIKey = "&appid=016e0c84a66372bfe43d6b8df53c6531";
-    var OWM_FiveDayQuery = OWM_URL + "forecast?q=" + city + "&appid=" + OWM_UnitConvert + OWM_APIKey;
+    var OWM_APIKey = "016e0c84a66372bfe43d6b8df53c6531";
     var OWM_UnitConvert = "&units=imperial";
     var OWM_URL = "https://api.openweathermap.org/data/2.5/";
-    var OWM_WeatherQuery = OWM_URL + "weather?q=" + city + OWM_UnitConvert + OWM_APIKey;
     
     // determines if the city has been entered from the search input or the search history:
     if (cityFromInput) {
@@ -80,35 +78,41 @@ $(document).ready(function() {
     } else {
       city = cityFromHistory;
     }
-
+    console.log(city);
+    $("#cityName").text(city);
+    
+    var OWM_WeatherQuery = OWM_URL + "weather?q=" + city + OWM_UnitConvert + "&appid=" + OWM_APIKey;
+    
     // AJAX call for the current weather:
     $.ajax({
       url: OWM_WeatherQuery,
-      method: "GET"
+      method: "GET",
     }).then(function(response) {
-
+      
       var tempF = response.main.temp;
       var longitude = response.coord.lon;
       var latitude = response.coord.lat;
-      var OWM_UVQuery = OWM_URL + "uvi?appid=" + OWM_APIKey + "&lat=" + latitude + "&lon=" + longitude;
       var RHumidity = response.main.humidity;
-      var UVIndex;
       var windSpeed = response.wind.speed;
       
+      // assigns values to "CURRENT SELECTED CITY" on DOM:
+      $("#tempF").text(tempF + "°F");
+      $("#RHumidity").text(RHumidity + "%");
+      $("#windSpeed").text(windSpeed + "mph");
+      
       // AJAX call for the UV Index (requires longitude and latitude from previous call to determine):
+      var OWM_UVQuery = OWM_URL + "uvi?appid=" + OWM_APIKey + "&lat=" + latitude + "&lon=" + longitude;
+
       $.ajax({
         url: OWM_UVQuery,
-        method: "GET"
+        method: "GET",
       }).then(function(response) {
-        UVIndex = response.value;
-        
-        // assigns values to "CURRENT SELECTED CITY" on DOM:
-        $("#tempF").text(tempF);
-        $("#RHumidity").text(RHumidity);
-        $("#windSpeed").text(windSpeed);
+        var UVIndex = response.value;
         $("#UVIndex").text(UVIndex);
         
         // determines the level of UV severity based on the World Health Organization's index then assigns corresponding color in UV Index box adjacent to UV Index data on DOM:
+        $("#UVIBox").removeClass();
+        $("#UVIBox").addClass("badge badge-secondary");
         if (UVIndex >= 0 && UVIndex < 3) {
           $("#UVIBox").text("Low");
           $("#UVIBox").addClass("UVLow");
@@ -125,19 +129,28 @@ $(document).ready(function() {
           $("#UVIBox").text("Extreme");
           $("#UVIBox").addClass("UVExtreme");
         }
-      });
-    });
-
-    // AJAX call to get five-day forecast:
-    $.ajax({
-      url: OWM_FiveDayQuery,
-      method: "GET"
-    }).then(function(response) {
-      var fiveDayTempF = response.list.main.temp;
-      var fiveDayRHumidity = response.list.main.humidity;
-
+        
+      }).catch(function(error) {
+        
+      })
+    }).catch(function(error) {
       
     });
+    
+    // AJAX call to get five-day forecast:
+    var OWM_FiveDayQuery = OWM_URL + "forecast?q=" + city + "&appid=" + OWM_UnitConvert + OWM_APIKey;
+    
+    // $.ajax({
+    //   url: OWM_FiveDayQuery,
+    //   method: "GET"
+    // }).then(function(response) {
+    //   var fiveDayTempF = response.list.main.temp;
+    //   var fiveDayRHumidity = response.list.main.humidity;
+      
+      
+    // }).catch(function(error) {
+      
+    // });
   };
   
   $("#genCity").on("click", function(event) {
@@ -148,10 +161,10 @@ $(document).ready(function() {
     renderHistory();
   });
 });
-
-
-
-
+  
+  
+  
+  
 // Get city from search bar (input form-control)
 
 // When search button clicked, it drops information into the current city field:
