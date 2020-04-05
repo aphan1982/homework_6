@@ -144,19 +144,42 @@ $(document).ready(function() {
     });
     
     // AJAX call to get five-day forecast:
-    var OWM_FiveDayQuery = OWM_URL + "forecast?q=" + city + "&appid=" + OWM_UnitConvert + OWM_APIKey;
+    var OWM_FiveDayQuery = OWM_URL + "forecast?q=" + city + OWM_UnitConvert + "&appid=" + OWM_APIKey;
     
-    // $.ajax({
-    //   url: OWM_FiveDayQuery,
-    //   method: "GET"
-    // }).then(function(response) {
-    //   var fiveDayTempF = response.list.main.temp;
-    //   var fiveDayRHumidity = response.list.main.humidity;
+    $.ajax({
+      url: OWM_FiveDayQuery,
+      method: "GET"
+    }).then(function(response) {
+      // VARIABLES FOR FIVE-DAY FORECAST
+      // day 1
+      var f1TempF = response.list[4].main.temp.toFixed(1);
+      var f1RHumidity = response.list[4].main.humidity;
+      var f1OWM_IconCode = response.list[4].weather[0].icon;
+      var f1OWM_Icon = "http://openweathermap.org/img/wn/" + f1OWM_IconCode + "@2x.png";
+      // day 2
+      var f2TempF = response.list[8].main.temp.toFixed(1);
+      var f2RHumidity = response.list[8].main.humidity;
+      var f2OWM_IconCode = response.list[8].weather[0].icon;
+      var f2OWM_Icon = "http://openweathermap.org/img/wn/" + f2OWM_IconCode + "@2x.png";
+      // day 3
+      var f3TempF = response.list[12].main.temp.toFixed(1);
+      var f3RHumidity = response.list[12].main.humidity;
+      var f3OWM_IconCode = response.list[12].weather[0].icon;
+      var f3OWM_Icon = "http://openweathermap.org/img/wn/" + f3OWM_IconCode + "@2x.png";
+      // day 4
+      var f4TempF = response.list[16].main.temp.toFixed(1);
+      var f4RHumidity = response.list[16].main.humidity;
+      var f4OWM_IconCode = response.list[16].weather[0].icon;
+      var f4OWM_Icon = "http://openweathermap.org/img/wn/" + f4OWM_IconCode + "@2x.png";
+      // day 5
+      var f5TempF = response.list[20].main.temp.toFixed(1);
+      var f5RHumidity = response.list[20].main.humidity;
+      var f5OWM_IconCode = response.list[20].weather[0].icon;
+      var f5OWM_Icon = "http://openweathermap.org/img/wn/" + f5OWM_IconCode + "@2x.png";
+       
+    }).catch(function(error) {
       
-      
-    // }).catch(function(error) {
-      
-    // });
+    });
   };
   
   $("#genCity").on("click", function(event) {
