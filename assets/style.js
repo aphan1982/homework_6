@@ -150,32 +150,61 @@ $(document).ready(function() {
       url: OWM_FiveDayQuery,
       method: "GET"
     }).then(function(response) {
-      // VARIABLES FOR FIVE-DAY FORECAST
+      // SETS FIVE-DAY FORECAST
+      // Sets the days of the week in relation to today:
+      var day1 = moment().add(1, "days").format("ddd");
+      var day2 = moment().add(2, "days").format("ddd");
+      var day3 = moment().add(3, "days").format("ddd");
+      var day4 = moment().add(4, "days").format("ddd");
+      var day5 = moment().add(5, "days").format("ddd");
+      $("#FDF1Date").text(day1 + ".");
+      $("#FDF2Date").text(day2 + ".");
+      $("#FDF3Date").text(day3 + ".");
+      $("#FDF4Date").text(day4 + ".");
+      $("#FDF5Date").text(day5 + ".");
+
+      // Displays weather data associated with each day:
       // day 1
-      var f1TempF = response.list[4].main.temp.toFixed(1);
-      var f1RHumidity = response.list[4].main.humidity;
-      var f1OWM_IconCode = response.list[4].weather[0].icon;
+      var f1TempF = response.list[6].main.temp.toFixed(1);
+      var f1RHumidity = response.list[6].main.humidity;
+      var f1OWM_IconCode = response.list[6].weather[0].icon;
       var f1OWM_Icon = "http://openweathermap.org/img/wn/" + f1OWM_IconCode + "@2x.png";
+      $("#f1TempF").text(f1TempF + "°F");
+      $("#f1RHumidity").text(f1RHumidity + "%");
+      $("#FD1Icon").css("background", "url(" + f1OWM_Icon + ")");
       // day 2
-      var f2TempF = response.list[8].main.temp.toFixed(1);
-      var f2RHumidity = response.list[8].main.humidity;
-      var f2OWM_IconCode = response.list[8].weather[0].icon;
+      var f2TempF = response.list[14].main.temp.toFixed(1);
+      var f2RHumidity = response.list[14].main.humidity;
+      var f2OWM_IconCode = response.list[14].weather[0].icon;
       var f2OWM_Icon = "http://openweathermap.org/img/wn/" + f2OWM_IconCode + "@2x.png";
+      $("#f2TempF").text(f2TempF + "°F");
+      $("#f2RHumidity").text(f2RHumidity + "%");
+      $("#FD2Icon").css("background", "url(" + f2OWM_Icon + ")");
       // day 3
-      var f3TempF = response.list[12].main.temp.toFixed(1);
-      var f3RHumidity = response.list[12].main.humidity;
-      var f3OWM_IconCode = response.list[12].weather[0].icon;
+      var f3TempF = response.list[22].main.temp.toFixed(1);
+      var f3RHumidity = response.list[22].main.humidity;
+      var f3OWM_IconCode = response.list[22].weather[0].icon;
       var f3OWM_Icon = "http://openweathermap.org/img/wn/" + f3OWM_IconCode + "@2x.png";
+      $("#f3TempF").text(f3TempF + "°F");
+      $("#f3RHumidity").text(f3RHumidity + "%");
+      $("#FD3Icon").css("background", "url(" + f3OWM_Icon + ")");
       // day 4
-      var f4TempF = response.list[16].main.temp.toFixed(1);
-      var f4RHumidity = response.list[16].main.humidity;
-      var f4OWM_IconCode = response.list[16].weather[0].icon;
+      var f4TempF = response.list[30].main.temp.toFixed(1);
+      var f4RHumidity = response.list[30].main.humidity;
+      var f4OWM_IconCode = response.list[30].weather[0].icon;
       var f4OWM_Icon = "http://openweathermap.org/img/wn/" + f4OWM_IconCode + "@2x.png";
+      $("#f4TempF").text(f4TempF + "°F");
+      $("#f4RHumidity").text(f4RHumidity + "%");
+      $("#FD4Icon").css("background", "url(" + f4OWM_Icon + ")");
       // day 5
-      var f5TempF = response.list[20].main.temp.toFixed(1);
-      var f5RHumidity = response.list[20].main.humidity;
-      var f5OWM_IconCode = response.list[20].weather[0].icon;
+      var f5TempF = response.list[38].main.temp.toFixed(1);
+      var f5RHumidity = response.list[38].main.humidity;
+      var f5OWM_IconCode = response.list[38].weather[0].icon;
       var f5OWM_Icon = "http://openweathermap.org/img/wn/" + f5OWM_IconCode + "@2x.png";
+      $("#f5TempF").text(f5TempF + "°F");
+      $("#f5RHumidity").text(f5RHumidity + "%");
+      $("#FD5Icon").css("background", "url(" + f5OWM_Icon + ")");
+
        
     }).catch(function(error) {
       

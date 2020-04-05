@@ -18,7 +18,9 @@ body {
   color: #ffffff
 }
 .brightCloudRev {
+  background-color: rgb(225, 233, 233);
   color: rgb(220, 77, 59);
+  padding: 0px 2px 0px 2px;
 }
 .btnBorders {
   border-left: none;
@@ -65,6 +67,9 @@ body {
 .minPadding {
   padding: 0.5rem;
 }
+.redText {
+  color: rgb(220, 77, 59);
+}
 .serif {
   font-family: 'Slabo 27px', serif;
 }
@@ -91,8 +96,13 @@ body {
 #currentDay {
   color: rgb(255, 196, 0);
 }
+#FD1Icon, #FD2Icon, #FD3Icon, #FD4Icon, #FD5Icon{
+  background: url();
+  background-position: right center !important;
+  background-repeat: no-repeat !important;
+}
 #weatherDisplay {
-  animation: iconSize 4s infinite, wander 200s infinite;
+  animation: iconSize 4s infinite, wander 30s infinite;
   background: url();
   background-repeat: no-repeat !important;
 }
@@ -103,11 +113,11 @@ body {
   100% {background-size: 100px;}
 }
 @keyframes wander {
-  0% {background-position: right center;}
-  25% {background-position: center bottom;}
-  50% {background-position: left center;}
-  75% {background-position: top center;}
-  100% {background-position: right center;}
+  0% {background-position: right top;}
+  25% {background-position: right bottom;}
+  50% {background-position: center bottom;}
+  75% {background-position: center top;}
+  100% {background-position: right top;}
 }
 
 /* MEDIA QUERIES */
