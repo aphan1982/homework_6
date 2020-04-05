@@ -102,6 +102,7 @@ $(document).ready(function() {
       $("#RHumidity").text(RHumidity + "%");
       $("#windSpeed").text(windSpeed + "mph");
       $("#cityHeader").html(city + "<span class='handwriting' id='currentDay'>  — " + currentDay + "</span>");
+      $("#weatherDisplay").css("background", "url(" + OWM_Icon + ")");
       
       // AJAX call for the UV Index (requires longitude and latitude from previous call to determine):
       var OWM_UVQuery = OWM_URL + "uvi?appid=" + OWM_APIKey + "&lat=" + latitude + "&lon=" + longitude;

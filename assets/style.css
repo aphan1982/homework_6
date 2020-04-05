@@ -44,6 +44,10 @@ body {
   color: darkblue;
   font-family: 'Rock Salt', cursive;
 }
+.handwritingRed {
+  color: red;
+  font-family: 'Rock Salt', cursive;
+}
 .jumbotron {
   background-image: url("./images/victor-rodriguez-CPFYZSvAzc8-unsplash.jpg");
   background-size: cover;
@@ -85,25 +89,25 @@ body {
 
 /* ID STYLES */
 #currentDay {
-  color: rgb(255, 217, 0);
+  color: rgb(255, 196, 0);
 }
 #weatherDisplay {
-  animation: iconOpacity 4s infinite;
+  animation: iconSize 4s infinite, wander 200s infinite;
   background: url();
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: initial;
+  background-repeat: no-repeat !important;
 }
-@keyframes iconOpacity {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.75;
-  }
-  100% {
-    opacity: 1;
-  }
+/* KEYFRAMES */
+@keyframes iconSize {
+  0% {background-size: 100px;}
+  50% {background-size: 90px;}
+  100% {background-size: 100px;}
+}
+@keyframes wander {
+  0% {background-position: right center;}
+  25% {background-position: center bottom;}
+  50% {background-position: left center;}
+  75% {background-position: top center;}
+  100% {background-position: right center;}
 }
 
 /* MEDIA QUERIES */
