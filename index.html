@@ -35,7 +35,7 @@
             <div class="card-body minPadding">
               <!-- search bar and button-->
               <form class="input-group mb-3" id="cityForm">
-                <input type="text" class="form-control handwriting" placeholder=" Search..." aria-label="Search weather" aria-describedby="cityInput" id="cityInput">
+                <input type="text" autocomplete="off" class="form-control handwriting" placeholder=" Search..." aria-label="Search weather" aria-describedby="cityInput" id="cityInput">
                 <button type="submit" class="input-group-text btnBorders" id="genCity">
                   <!-- magnifying glass icon -->
                   <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +50,7 @@
                 <button type="button" class="list-group-item list-group-item-action active" disabled>Recent searches</button>
                 <!-- default "no recent searches" button -->
                 <button type="button" class="list-group-item list-group-item-action handwriting history d-none" id=cityBtn1></button>
-                <!-- default blank recent searches -->
+                <!-- default blank recent search buttons -->
                 <button type="button" class="list-group-item list-group-item-action handwriting history d-none" id=cityBtn2></button>
                 <button type="button" class="list-group-item list-group-item-action handwriting history d-none" id=cityBtn3></button>
                 <button type="button" class="list-group-item list-group-item-action handwriting history d-none" id=cityBtn4></button>
@@ -69,14 +69,14 @@
         <!-- WHEN I view current weather conditions for that city
         THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index -->
         <!-- CURRENT SELECTED CITY -->
-        <div class="col-sm-8">
+        <div class="col-sm-8" id="jumpTo">
           <div class="card">
             <h5 class="card-header brightCloud" id="cityHeader">Anytown</span></h5>
             <div class="card-body border" id="weatherDisplay">
-              <p class="card-text">Temperature:   <span class="handwriting" id="tempF"></span></p>
-              <p class="card-text">Relative Humidity:   <span  class="handwriting" id="RHumidity"></span></p>
-              <p class="card-text">Wind Speed:   <span class="handwriting" id="windSpeed"></span></p>
-              <p class="card-text">UV Index:   <span class="handwriting" id="UVIndex"></span>     <span class="badge badge-secondary" id="UVIBox">No Data Available</span></p>
+              <p class="card-text">Temperature:   <span class="handwriting clearBack" id="tempF"></span></p>
+              <p class="card-text">Relative Humidity:   <span  class="handwriting clearBack" id="RHumidity"></span></p>
+              <p class="card-text">Wind Speed:   <span class="handwriting clearBack" id="windSpeed"></span></p>
+              <p class="card-text">UV Index:   <span class="handwriting clearBack" id="UVIndex"></span>     <span class="badge badge-secondary" id="UVIBox">No Data Available</span></p>
             </div>
             <!-- FIVE-DAY FORECAST -->
             <h5 class="card-header redText">Five-Day Forecast</h5>

@@ -24,6 +24,7 @@ $(document).ready(function() {
     buttons.empty();
     buttons.addClass("d-none");
     if (!searchedCities) {
+      $("#cityBtn1").prop("disabled", true);
       $("#cityBtn1").text("no recent history");
       $("#cityBtn1").removeClass("d-none");
       return;
@@ -53,6 +54,8 @@ $(document).ready(function() {
   function renderHistory() {
     var searchBtns = [$("#cityBtn1"), $("#cityBtn2"), $("#cityBtn3"), $("#cityBtn4"), $("#cityBtn5"), $("#cityBtn6"), $("#cityBtn7"), $("#cityBtn8"), $("#cityBtn9"), $("#cityBtn10")];
     searchedCities = JSON.parse(localStorage.getItem("cities"));
+    // enables button for use (was disabled when there was no recent search history):
+    $("#cityBtn1").prop("disabled", false);
     for (i = 0; i < searchBtns.length; i++) {
       if (searchedCities[i] === undefined) {
         return;
@@ -64,23 +67,13 @@ $(document).ready(function() {
     }
   };
   
+  var city;
   
   function displayWeather() {
-    var city;
-    var cityFromHistory = $(this).attr("data-name");
-    var cityFromInput = $("#cityInput").val().trim();
     var currentDay = moment().format("MMM Do");
     var OWM_APIKey = "016e0c84a66372bfe43d6b8df53c6531";
     var OWM_UnitConvert = "&units=imperial";
     var OWM_URL = "https://api.openweathermap.org/data/2.5/";
-    
-    // determines if the city has been entered from the search input or the search history:
-    if (cityFromInput) {
-      city = cityFromInput;
-    } else {
-      city = cityFromHistory;
-    }
-    
     
     var OWM_WeatherQuery = OWM_URL + "weather?q=" + city + OWM_UnitConvert + "&appid=" + OWM_APIKey;
     
@@ -106,7 +99,7 @@ $(document).ready(function() {
       
       // AJAX call for the UV Index (requires longitude and latitude from previous call to determine):
       var OWM_UVQuery = OWM_URL + "uvi?appid=" + OWM_APIKey + "&lat=" + latitude + "&lon=" + longitude;
-
+      
       $.ajax({
         url: OWM_UVQuery,
         method: "GET",
@@ -136,11 +129,9 @@ $(document).ready(function() {
           $("#UVIBox").addClass("UVExtreme");
         }
         
-      }).catch(function(error) {
-        
       })
     }).catch(function(error) {
-      
+      return;
     });
     
     // AJAX call to get five-day forecast:
@@ -162,7 +153,7 @@ $(document).ready(function() {
       $("#FDF3Date").text(day3 + ".");
       $("#FDF4Date").text(day4 + ".");
       $("#FDF5Date").text(day5 + ".");
-
+      
       // Displays weather data associated with each day:
       // day 1
       var f1TempF = response.list[6].main.temp.toFixed(1);
@@ -204,36 +195,29 @@ $(document).ready(function() {
       $("#f5TempF").text(f5TempF + "°F");
       $("#f5RHumidity").text(f5RHumidity + "%");
       $("#FD5Icon").css("background", "url(" + f5OWM_Icon + ")");
-
-       
-    }).catch(function(error) {
       
+      
+    }).catch(function(error) {
+      return;
     });
   };
   
   $("#genCity").on("click", function(event) {
     event.preventDefault();
     setSearchHistory();
-    displayWeather();
     $("#cityInput").val("");
     renderHistory();
+    city = $("#cityBtn1").attr("data-name");
+    console.log(city);
+    displayWeather();
+    window.location = "#jumpTo";
+  });
+  
+  $(".history").on("click", function(event) {
+    event.preventDefault();
+    console.log($(this).attr("data-name"));
+    city = $(this).attr("data-name");
+    displayWeather();
+    window.location = "#jumpTo";
   });
 });
-  
-  
-  
-  
-// Get city from search bar (input form-control)
-
-// When search button clicked, it drops information into the current city field:
-
-// Get current temperature
-// Get current RH
-// Get current wind speed
-// Get UV index
-
-// Figure a way to color-code the UV index according to conditions
-
-// Figure a way to get five-day data for temperature and RH.
-
-// Save current search in search history (localStorage) and bring up last ten searches.
