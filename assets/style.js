@@ -12,8 +12,6 @@ function setTime() {
 };
 setTime();
 
-// VARIABLES
-var searchInput = "";
 
 
 $(document).ready(function() {
@@ -74,7 +72,6 @@ $(document).ready(function() {
     var OWM_APIKey = "016e0c84a66372bfe43d6b8df53c6531";
     var OWM_UnitConvert = "&units=imperial";
     var OWM_URL = "https://api.openweathermap.org/data/2.5/";
-    
     var OWM_WeatherQuery = OWM_URL + "weather?q=" + city + OWM_UnitConvert + "&appid=" + OWM_APIKey;
     
     // AJAX call for the current weather:
@@ -131,6 +128,14 @@ $(document).ready(function() {
         
       })
     }).catch(function(error) {
+      $("#staticBackdrop").modal("show");
+      $("#errorCity").text(city);
+      var citiesEdited = JSON.parse(localStorage.getItem("cities"));
+      console.log(citiesEdited);
+      citiesEdited.splice(0, 1);
+      console.log(citiesEdited);
+      localStorage.setItem("cities", JSON.stringify(citiesEdited));
+      renderHistory();
       return;
     });
     

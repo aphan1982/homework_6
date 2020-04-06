@@ -70,7 +70,7 @@ body {
 .minPadding {
   padding: 0.5rem;
 }
-.redText {
+.redText, .modal {
   color: rgb(220, 77, 59);
 }
 .serif {
@@ -98,6 +98,9 @@ body {
 /* ID STYLES */
 #currentDay {
   color: rgb(255, 196, 0);
+}
+#errorCity {
+  color: rgb(110, 117, 124);
 }
 #FD1Icon, #FD2Icon, #FD3Icon, #FD4Icon, #FD5Icon{
   background: url();
