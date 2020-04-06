@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  <!-- // HEAD // -->
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="shorcut icon" href="./assets/images/favicon.ico">
     <title>Phan's Weather Dashboard</title>
-    <!-- // STYLESHEETS // -->
+    <!-- STYLESHEETS -->
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Rock+Salt|Slabo+27px&display=swap" rel="stylesheet">
-    <!-- individual styles -->
+    <!-- individual CSS styles -->
     <link rel="stylesheet" href="./assets/style.css">
   </head>
 
+  <!-- // BODY // -->
   <body>
-    <!-- // JUMBOTRON // -->
+    <!-- JUMBOTRON -->
     <header class="jumbotron jumbotron-fluid" data-imgCredit="Photo by Victor Rodriguez on Unsplash">
       <div class="container">
         <h1 class="display-4">Phan's Weather Dashboard</h1>
         <p class="lead">Whether or Not, Weather or Naught</p>
       </div>
+      <!-- current time displayed dynamically via moment.js -->
       <p class="text-right" id="currTime"></p>
     </header>
 
-    <!-- // MODAL // -->
+    <!-- MODAL -->
+    <!-- displayed dynamically if there is an error locating data in Open Weather Map's API (most likely due to user input error) -->
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -34,6 +40,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <!-- specific error message, displaying what city could not be located -->
           <div class="modal-body">
             It would appear that there's no data for "<span id="errorCity"></span>." Please make sure that you've spelled your city correctly and try again.
           </div>
@@ -44,16 +51,16 @@
       </div>
     </div>
 
-    <!-- // MAIN DISPLAY CONTAINER // -->
+    <!-- MAIN DISPLAY CONTAINER-->
     <div class="container-fluid">
       <div class="row">
         <!-- SEARCH SIDEBAR -->
         <div class="col-sm-4">
           <div class="card">
-            <!-- header and body -->
+            <!-- search header and body -->
             <h5 class="card-header darkSky">City Search</h5>
             <div class="card-body minPadding">
-              <!-- search bar and button-->
+              <!-- search bar and search button-->
               <form class="input-group mb-3" id="cityForm">
                 <input type="text" autocomplete="off" class="form-control handwriting" placeholder=" Search..." aria-label="Search weather" aria-describedby="cityInput" id="cityInput">
                 <button type="submit" class="input-group-text btnBorders" id="genCity">
@@ -64,13 +71,15 @@
                   </svg>
                 </button>
               </form>
+
+              <!-- SEARCH HISTORY -->
               <!-- recent search buttons (added dynamically) -->
               <div class="list-group">
-                <!-- recent search "header" -->
+                <!-- recent search header (disabled "button" just to maintain Bootstrap esthetic formatting) -->
                 <button type="button" class="list-group-item list-group-item-action active" disabled>Recent searches</button>
-                <!-- default "no recent searches" button -->
+                <!-- default "no recent searches" button (after user selects first city it is added to the list of previous search results and enabled for click)-->
                 <button type="button" class="list-group-item list-group-item-action handwriting history d-none" id=cityBtn1></button>
-                <!-- default blank recent search buttons -->
+                <!-- default blank recent search buttons, displayed dynamically as user adds to search history -->
                 <button type="button" class="list-group-item list-group-item-action handwriting history d-none" id=cityBtn2></button>
                 <button type="button" class="list-group-item list-group-item-action handwriting history d-none" id=cityBtn3></button>
                 <button type="button" class="list-group-item list-group-item-action handwriting history d-none" id=cityBtn4></button>
@@ -85,19 +94,19 @@
           </div>
         </div>
 
-        <!-- **CARD w/<p> tags** -->
-        <!-- WHEN I view current weather conditions for that city
-        THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index -->
         <!-- CURRENT SELECTED CITY -->
         <div class="col-sm-8" id="jumpTo">
           <div class="card">
+            <!-- name of current highlighted city and date, updated dynamically -->
             <h5 class="card-header brightCloud" id="cityHeader">Anytown</span></h5>
+            <!-- weather data -->
             <div class="card-body border" id="weatherDisplay">
               <p class="card-text">Temperature:   <span class="handwriting clearBack" id="tempF"></span></p>
               <p class="card-text">Relative Humidity:   <span  class="handwriting clearBack" id="RHumidity"></span></p>
               <p class="card-text">Wind Speed:   <span class="handwriting clearBack" id="windSpeed"></span></p>
               <p class="card-text">UV Index:   <span class="handwriting clearBack" id="UVIndex"></span>     <span class="badge badge-secondary" id="UVIBox">No Data Available</span></p>
             </div>
+
             <!-- FIVE-DAY FORECAST -->
             <h5 class="card-header redText">Five-Day Forecast</h5>
             <div class="card-group border">
@@ -144,27 +153,8 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-    <!-- **CURRENT WEATHER CARD** -->
-    <!-- WHEN I view the UV index
-    THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe -->
-
-
-    <!-- **5-DAY FORECAST CARDS** -->
-    <!-- WHEN I view future weather conditions for that city
-    THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity -->
-
-
-    <!-- localStorage.getItem -->
-    <!-- WHEN I click on a city in the search history
-    THEN I am again presented with current and future conditions for that city -->
-
-    <!-- localStorage.getItem -->
-    <!-- WHEN I open the weather dashboard
-    THEN I am presented with the last searched city forecast -->
 
     <hr>
 
@@ -179,7 +169,5 @@
     <script src="./assets/bootstrap.js"></script>
     <!-- individual script -->
     <script src="./assets/style.js"></script>
-
   </body>
-
 </html>
