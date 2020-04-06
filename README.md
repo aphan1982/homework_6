@@ -1,46 +1,30 @@
 # 06 Server-Side APIs: Weather Dashboard
 
-Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+<!-- //PURPOSE & FUNCTIONALITY OF APPLET// -->
+[This applet:](https://aphan1982.github.io/homework_6/) 
 
-Use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. The documentation includes a section called "How to start" that will provide basic setup and usage instructions. Use `localStorage` to store any persistent data.
+![a relative link](./assets/images/comprehensive_view.png "comprehensive view of deployed site")
 
-## User Story
+enables a user to search by city name for weather data. The current local date and time are updated via `moment.js` in the jumbotron header for reference:
 
-```
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-```
+![a relative link](./assets/images/jumbotron_time.png "current time display")
 
-## Acceptance Criteria
+When the user makes a valid search entry, each search entry is dynamically listed in a history of up to ten clickable reference buttons. These entries are stored in local storage to be automatically rendered when the user refreshes the screen or returns:
 
-```
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-WHEN I open the weather dashboard
-THEN I am presented with the last searched city forecast
-```
+![a relative link](./assets/images/search_input.png "entering city searches")
 
-The following image demonstrates the application functionality:
+If an invalid spelling or other error is entered, a modal will appear alerting the user that the request cannot be processed and to try again. The erroneous entry is removed from local storage and cleared from possible buttons to click:
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
+![a relative link](./assets/images/modal_display.png "modal error display")
 
-## Review
+Whether entered as a new search or clicked from a previous search, the current data for the city requested is displayed. This includes an icon representing the atmospheric conditions, temperature in fahrenheit, relative humidity, wind speed in miles per hour, and ultraviolet index color-coded according to the World Health Organization's color scheme:
 
-You are required to submit the following for review:
+![a relative link](./assets/images/current_display.png "current weather display")
 
-* The URL of the deployed application.
+Immediately below is a five-day forecast with all the same criteria minus wind speed and UV index:
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+![a relative link](./assets/images/five_day.png "five-day forecast") 
 
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+The formatting of the app is meant to be optimized for mobile viewing:
+
+![a relative link](./assets/images/mobile_display.png "mobile view of app")
