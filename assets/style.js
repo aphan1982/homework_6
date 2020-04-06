@@ -12,8 +12,6 @@ function setTime() {
 };
 setTime();
 
-
-
 $(document).ready(function() {
   // INITIALIZATION--makes sure that no buttons are being rendered if no search history exists in local storage; if a search history exists, up to ten most recent searches will be rendered:
   function initSearch() {
@@ -52,7 +50,7 @@ $(document).ready(function() {
   function renderHistory() {
     var searchBtns = [$("#cityBtn1"), $("#cityBtn2"), $("#cityBtn3"), $("#cityBtn4"), $("#cityBtn5"), $("#cityBtn6"), $("#cityBtn7"), $("#cityBtn8"), $("#cityBtn9"), $("#cityBtn10")];
     searchedCities = JSON.parse(localStorage.getItem("cities"));
-    // enables button for use (was disabled when there was no recent search history):
+    // enables button for use (defaults as disabled when no recent search history):
     $("#cityBtn1").prop("disabled", false);
     for (i = 0; i < searchBtns.length; i++) {
       if (searchedCities[i] === undefined) {
@@ -67,6 +65,7 @@ $(document).ready(function() {
   
   var city;
   
+  // DISPLAY WEATHER--uses Open Weather Map's API to gather and dynamically display data:
   function displayWeather() {
     var currentDay = moment().format("MMM Do");
     var OWM_APIKey = "016e0c84a66372bfe43d6b8df53c6531";
@@ -74,7 +73,7 @@ $(document).ready(function() {
     var OWM_URL = "https://api.openweathermap.org/data/2.5/";
     var OWM_WeatherQuery = OWM_URL + "weather?q=" + city + OWM_UnitConvert + "&appid=" + OWM_APIKey;
     
-    // AJAX call for the current weather:
+    // AJAX call to get current weather:
     $.ajax({
       url: OWM_WeatherQuery,
       method: "GET",
@@ -94,9 +93,9 @@ $(document).ready(function() {
       $("#cityHeader").html(city + "<span class='handwriting' id='currentDay'>  — " + currentDay + "</span>");
       $("#weatherDisplay").css("background", "url(" + OWM_Icon + ")");
       
-      // AJAX call for the UV Index (requires longitude and latitude from previous call to determine):
       var OWM_UVQuery = OWM_URL + "uvi?appid=" + OWM_APIKey + "&lat=" + latitude + "&lon=" + longitude;
       
+      // AJAX call for the UV Index (requires longitude and latitude from previous call):
       $.ajax({
         url: OWM_UVQuery,
         method: "GET",
@@ -125,29 +124,26 @@ $(document).ready(function() {
           $("#UVIBox").text("Extreme");
           $("#UVIBox").addClass("UVExtreme");
         }
-        
       })
     }).catch(function(error) {
+      // if OWM's API is unable to locate a match to user input, a modal is launched to indicate such and the error city is cleared from the search history:
       $("#staticBackdrop").modal("show");
       $("#errorCity").text(city);
       var citiesEdited = JSON.parse(localStorage.getItem("cities"));
-      console.log(citiesEdited);
       citiesEdited.splice(0, 1);
-      console.log(citiesEdited);
       localStorage.setItem("cities", JSON.stringify(citiesEdited));
       renderHistory();
       return;
     });
     
-    // AJAX call to get five-day forecast:
     var OWM_FiveDayQuery = OWM_URL + "forecast?q=" + city + OWM_UnitConvert + "&appid=" + OWM_APIKey;
     
+    // AJAX call to get five-day forecast:
     $.ajax({
       url: OWM_FiveDayQuery,
       method: "GET"
     }).then(function(response) {
-      // SETS FIVE-DAY FORECAST
-      // Sets the days of the week in relation to today:
+      // sets the days of the week in relation to today:
       var day1 = moment().add(1, "days").format("ddd");
       var day2 = moment().add(2, "days").format("ddd");
       var day3 = moment().add(3, "days").format("ddd");
@@ -200,27 +196,26 @@ $(document).ready(function() {
       $("#f5TempF").text(f5TempF + "°F");
       $("#f5RHumidity").text(f5RHumidity + "%");
       $("#FD5Icon").css("background", "url(" + f5OWM_Icon + ")");
-      
-      
     }).catch(function(error) {
       return;
     });
   };
   
+  // EVENT HANDLERS:
+  // handles the search input and search button for new searches:
   $("#genCity").on("click", function(event) {
     event.preventDefault();
     setSearchHistory();
     $("#cityInput").val("");
     renderHistory();
     city = $("#cityBtn1").attr("data-name");
-    console.log(city);
     displayWeather();
     window.location = "#jumpTo";
   });
   
+  // handles each button generated from search history:
   $(".history").on("click", function(event) {
     event.preventDefault();
-    console.log($(this).attr("data-name"));
     city = $(this).attr("data-name");
     displayWeather();
     window.location = "#jumpTo";
