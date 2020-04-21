@@ -1,7 +1,7 @@
 # 06 Server-Side APIs: Weather Dashboard
 
 <!-- //PURPOSE & FUNCTIONALITY OF APPLET// -->
-[This applet:](https://aphan1982.github.io/homework_6/) 
+This applet [(click here)](https://aphan1982.github.io/homework_6/) 
 
 ![a relative link](./assets/images/comprehensive_view.png "comprehensive view of deployed site")
 
